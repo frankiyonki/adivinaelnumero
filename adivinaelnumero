@@ -1,0 +1,30 @@
+from random import randint
+
+while True:
+    
+    param1 = input('from ')
+    param2 = input('to ')
+    if param1 and param2 == str:
+        pass
+    else:
+        print('enter only numbers please')
+
+
+
+
+answer = randint(int(param1),int(param2))
+
+while True:
+    try:
+        guess = input(f'guess a number from {str(param1)} to {str(param2)}')
+        if int(guess) > (int(param1)-1) and int(guess) < (int(param2)+1):
+            if int(guess)==answer:
+                print('you win')
+            else:
+                print('you lose')
+        else:
+            print(f'it has to be from {str(param1)} to {str(param2)}')
+    except:
+            print('hey,input a number')
+    else:
+            continue
