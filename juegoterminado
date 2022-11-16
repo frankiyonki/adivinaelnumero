@@ -1,0 +1,71 @@
+puntuaciones = {}
+def niveles():
+    print('')
+    print('escoge un nivel')
+    print('1=fácil')
+    print('2=medio')
+    print('3=difícil')
+    print('')
+    gamelevel = int(input('cual decides?='))
+    global nivelglobal
+    nivelglobal=gamelevel
+
+def parametrosniveles():
+     global maximo
+     global guesses
+     if nivelglobal==1:
+        maximo=10
+        guesses=3
+     elif nivelglobal==2:
+        maximo=100
+        guesses=9
+     elif nivelglobal==3:
+        maximo=1000
+        guesses=27
+     else:
+        print('')
+        print('solo los digitos 1,2 o 3 estan permitidos')
+        nivel=1
+        maximo=10
+        guesses=3
+        print('el nivel se ha puesto a 1')
+     print('has de adivinar un numero de 0 a '+str(maximo))
+     print(f'tienes {guesses} intentos')
+
+def generarnumero():
+    import random
+    global numero
+    numero = random.randint(1,maximo)
+
+
+def jugadorjuega():
+    guessnumber = 0
+    while guessnumber < guesses:
+        playerGuess = int(input(f'dime un numero del 1 al {maximo}:'))
+
+        if playerGuess < numero:
+            print('te quedaste corto')
+            guessnumber = guessnumber+1
+        elif playerGuess > numero:
+            print('te pasaste')
+            guessnumber = guessnumber+1
+        else:
+            print('ganaste!!!!!!!!!')
+            nombre = input('cual es tu nombre?')
+            guessnumber = guessnumber+1
+            puntuaciones.update({nombre:guessnumber})
+            break
+    print(f'se ha acabado el juego despues de {guessnumber} intentos')
+    print(f'el numero misterioso era {numero}, este es tu record{puntuaciones}')
+
+
+print('bienvenido al juego de adivinar el numero misterioso')
+
+niveles()
+
+parametrosniveles()
+
+generarnumero()
+
+jugadorjuega()
+
